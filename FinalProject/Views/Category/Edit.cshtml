@@ -1,0 +1,26 @@
+﻿@model FinalProject.Models.Category
+
+@using (Html.BeginForm())
+{
+    <h4>Update Categories</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.CategoryId)
+
+    <div>
+        @Html.LabelFor(model => model.Name)
+        @Html.EditorFor(model => model.Name)
+    </div>
+
+    <div>
+        <input type="submit" value="Update">
+    </div>
+
+    <p>@TempData["msg"]</p>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+

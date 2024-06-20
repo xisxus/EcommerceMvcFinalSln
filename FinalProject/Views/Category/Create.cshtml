@@ -1,0 +1,18 @@
+﻿@model FinalProject.Models.Category
+
+@using (Html.BeginForm())
+{
+    <h2>Add Category</h2>
+    <form>
+        <div>
+            <span>Name:</span>
+            @Html.TextBoxFor(m => m.Name)
+        </div>
+        <div>
+            <input type="submit" value="Add Category">
+        </div>
+    </form>
+    <h3 style="color:red;">@TempData["msg"]</h3>
+}
+
+

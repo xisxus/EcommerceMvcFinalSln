@@ -2,18 +2,22 @@
 
 @using (Html.BeginForm())
 {
-    <h2>Login</h2>
+    <h2>Register</h2>
     <form>
         <div>
+            <span>Name:</span>
+            @Html.TextBoxFor(m => m.Name)
+        </div>
+        <div>
             <span>Email:</span>
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Email)
         </div>
         <div>
             <span>Password:</span>
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.PasswordFor(m => m.Password)
         </div>
         <div>
-            <input type="submit" value="Login" class="btn btn-primary">
+            <input type="submit" value="Register">
         </div>
     </form>
     <h3 style="color:red;">@TempData["msg"]</h3>
