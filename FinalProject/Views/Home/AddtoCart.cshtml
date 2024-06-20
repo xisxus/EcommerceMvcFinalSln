@@ -1,0 +1,24 @@
+﻿@model FinalProject.Models.Product
+
+<div>
+
+    @using (Html.BeginForm())
+    {
+        <div>
+            <input type="hidden" name="id" value="@Model.ProductId" />
+            <img src="~/Uploads/@Model.Image" style="height:250px;width:100%" />
+        </div>
+
+        <div>
+            <h3>@Model.Name</h3>
+
+            <p>@Model.Description</p>
+            <p>Rs. <strong>@Model.Unit</strong></p>
+            <input type="number" min="1" max="10" name="qty" />
+            <input type="submit" value="Add to Cart" class="btn btn-warning" />
+        </div>
+    }
+
+</div>
+
+

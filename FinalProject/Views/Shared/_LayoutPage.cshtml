@@ -1,5 +1,4 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -7,7 +6,61 @@
 </head>
 <body>
     <div>
-        @RenderBody()
-    </div>
+            <nav>
+                <a href="@Url.Action("Index","Home")">MyStore</a>
+                <ul>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                        <li><a href="@Url.Action("Login","Account")">Login</a></li>
+                        <li><a href="@Url.Action("Register", "Account")">Register</a></li>
+                        if (TempData["cart"] != null)
+                        {
+                            TempData.Keep();
+                            <li><a href="@Url.Action("Checkout","Home")"><span class="icon-shopping_cart"></span>[@TempData["item_count"]]</a></li>
+                        }
+                    }
+                    else if (User.Identity.IsAuthenticated)
+                    {
+                        <li>Welcome to @Session["User"]</li>
+                        if (User.IsInRole("1"))
+                        {
+                            <li>
+                                <a href="#">Categories</a>
+                                <ul>
+                                    <li><a href="@Url.Action("Create", "Category")">Add Category</a></li>
+                                    <li><a href="@Url.Action("Index", "Category")">View Categories</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Products</a>
+                                <ul>
+                                    <li><a href="@Url.Action("Create", "Products")">Add Product</a></li>
+                                    <li><a href="@Url.Action("Index", "Products")">View Products</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="@Url.Action("GetAllUser", "Home")">Users</a></li>
+                            <li><a href="@Url.Action("GetAllOrderDetail", "Home")">Orders</a></li>
+                        }
+                        else if (User.IsInRole("2"))
+                        {
+                            <li><a href="@Url.Action("OrderDetail", "Home", new { id = @Session["uid"] })">Orders</a></li>
+                        }
+                        if (TempData["cart"] != null)
+                        {
+                            TempData.Keep();
+                            <li><a href="@Url.Action("Checkout","Home")"><span class="icon-shopping_cart"></span>[@TempData["item_count"]]</a></li>
+                        }
+                        <li><a href="@Url.Action("Signout","Account")">Logout</a></li>
+                    }
+                </ul>
+            </nav>
+        </div>
+
+    <h1>this is for test</h1>
+
+    @RenderBody()
+
+    <h1>this is for test</h1>
 </body>
 </html>

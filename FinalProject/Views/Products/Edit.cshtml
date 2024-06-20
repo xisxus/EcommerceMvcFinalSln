@@ -1,0 +1,46 @@
+﻿@model FinalProject.Models.Product
+
+
+@using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <h4>Update Products</h4>
+    <hr />
+
+    @Html.HiddenFor(model => model.ProductId)
+
+    <div>
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.Unit, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(model => model.Unit, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+
+    <div>
+        <span>Select Image:</span>
+        <img src="~/Uploads/@Model.Image" style="width:150px; height:100px;" class="img-responsive" />
+        <input type="file" name="Image" />
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.CategoryId, "Category", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.DropDownList("CatId", ViewBag.CatList as SelectList, htmlAttributes: new { @class = "form-control" })
+    </div>
+
+    <div>
+        <input type="submit" value="Update" class="btn btn-success" />
+    </div>
+
+    <p>@TempData["msg"]</p>
+}
+
+@Html.ActionLink("Back to List", "Index")
+
+

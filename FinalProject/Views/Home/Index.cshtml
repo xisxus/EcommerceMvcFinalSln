@@ -1,0 +1,61 @@
+﻿@model IEnumerable<FinalProject.Models.Product>
+
+<section>
+    <div>
+        <div>
+            <span class="subheading">Featured Products</span>
+            <h2>Our Products</h2>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-3.7.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#searchBox").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#result .product").each(function () {
+                    var text = $(this).find("h3 a").text().toLowerCase();
+                    $(this).toggle(text.indexOf(value) > -1);
+                });
+            });
+        });
+    </script>
+
+    <div>
+        <input type="text" placeholder="Search Here" id="searchBox">
+    </div>
+
+    <div id="result">
+        @foreach (var item in Model)
+        {
+            <div>
+                <a href="@Url.Action("AddtoCart", "Home", new { id = @item.ProductId })">
+                    <img src="~/Uploads/@item.Image" alt="Product Image" style="height:250px">
+                    <span class="status">30%</span>
+                </a>
+                <div>
+                    <h3><a href="#">@item.Name</a></h3>
+                    <div>
+                        <p>
+                            <span class="price-dc">Rs.00</span>
+                            <span class="price-sale">Rs.@item.Unit</span>
+                        </p>
+                    </div>
+                    <div>
+                        <a href="#" class="add-to-cart">
+                            <span><i class="ion-ios-menu"></i></span>
+                        </a>
+                        <a href="#" class="buy-now">
+                            <span><i class="ion-ios-cart"></i></span>
+                        </a>
+                        <a href="#" class="heart">
+                            <span><i class="ion-ios-heart"></i></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+

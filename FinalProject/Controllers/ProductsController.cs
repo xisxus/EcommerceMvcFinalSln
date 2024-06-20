@@ -9,19 +9,19 @@ using System.Web.Mvc;
 
 namespace FinalProject.Controllers
 {
-    public class ProductController : Controller
+    public class ProductsController : Controller
     {
         AppDbContext db = new AppDbContext();
 
-        //#region showing all products for admin 
+        #region showing all products for admin 
 
-        //public ActionResult Index()
-        //{
-        //    var query = db.vw_getallproducts.ToList();
-        //    return View(query);
-        //}
+        public ActionResult Index()
+        {
+            var query = db.Products.ToList();
+            return View(query);
+        }
 
-        //#endregion
+        #endregion
 
 
         #region products add for admin

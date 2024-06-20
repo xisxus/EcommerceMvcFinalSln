@@ -1,0 +1,50 @@
+﻿@model FinalProject.Models.Product
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        <h2>Add Product</h2>
+        <div>
+            <div>
+
+
+                <form class="bg-white p-5 contact-form">
+                    <div>
+                        <span>Name:</span>
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        <span>Categories:</span>
+                        @Html.DropDownListFor(m => m.CategoryId, ViewBag.CatList as SelectList, "-- Select Category ---")
+                    </div>
+
+                    <div>
+                        <span>Description:</span>
+                        @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        <span>Unit Price:</span>
+                        @Html.TextBoxFor(m => m.Unit, new { @class = "form-control" })
+                    </div>
+
+                    <div>
+                        <span>Select Image:</span>
+                        <input type="file" name="Image" />
+                    </div>
+                    <div>
+                        <input type="submit" value="Add Product" class="btn btn-primary py-3 px-5">
+                    </div>
+                </form>
+                <h3 style="color:red;">@TempData["msg"]</h3>
+
+            </div>
+
+        </div>
+
+    </div>
+}
+
+
