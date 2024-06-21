@@ -79,7 +79,7 @@ namespace FinalProject.Controllers
         {
 
             List<Category> list = db.Categories.ToList();
-            ViewBag.CatList = new SelectList(list, "CatId", "Name");
+            ViewBag.CatList = new SelectList(list, "CategoryId", "Name");
 
             var query = db.Products.SingleOrDefault(m => m.ProductId == id);
 

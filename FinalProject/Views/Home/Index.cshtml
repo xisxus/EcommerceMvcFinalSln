@@ -26,21 +26,32 @@
         <input type="text" placeholder="Search Here" id="searchBox">
     </div>
 
-    <div id="result">
+  
         @foreach (var item in Model)
         {
-            <div>
-                <a href="@Url.Action("AddtoCart", "Home", new { id = @item.ProductId })">
-                    <img src="~/Uploads/@item.Image" alt="Product Image" style="height:250px">
-                    <span class="status">30%</span>
-                </a>
-                <div>
-                    <h3><a href="#">@item.Name</a></h3>
-                    <div>
-                        <p>
-                            <span class="price-dc">Rs.00</span>
-                            <span class="price-sale">Rs.@item.Unit</span>
-                        </p>
+                    <div class="col-lg-4 col-md-6 text-center strawberry">
+                        <div class="single-product-item">
+                            <div class="product-image">
+                                <a href="#"><img src="~/Uploads/@item.Image" alt=""></a>
+                            </div>
+                            <h3>@item.Name</h3>
+                            <p class="product-price"><span>Per Kg</span> @item.Unit </p>
+                            <a href="@Url.Action("AddtoCart", "Home", new { id = @item.ProductId })" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                        </div>
+                    </div>
+                }
+                </div>
+
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="pagination-wrap">
+                        <ul>
+                            <li><a href="#">Prev</a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a class="active" href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">Next</a></li>
+                        </ul>
                     </div>
                     <div>
                         <a href="#" class="add-to-cart">
