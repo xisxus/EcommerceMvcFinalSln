@@ -1,4 +1,5 @@
 ﻿using FinalProject.Models;
+using FinalProject.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -173,61 +174,127 @@ namespace FinalProject.Controllers
         #endregion
 
 
-        //#region all orders for admin 
+        #region all orders for admin 
 
-        //public ActionResult GetAllOrderDetail()
-        //{
-        //    var query = db.getallorders.ToList();
-        //    return View(query);
-        //}
+        public ActionResult GetAllOrderDetail()
+        {
+            var result = db.Invoices
+                .Join(db.Users,
+                      invoice => invoice.UserId,
+                      user => user.UserId,
+                      (invoice, user) => new OrderUserVM
+                      {
+                          InvoiceId = invoice.InvoiceId,
+                          UserId = user.UserId,
+                          Name = user.Name,
+                          Bill = invoice.Bill,
+                          Payment = invoice.Payment,
+                          InvoiceDate = invoice.InvoiceDate,
+                          Status = invoice.Status
+                      })
+                .ToList();
 
-        //#endregion
-
-        //#region  confirm order by admin
-
-        //public ActionResult ConfirmOrder(int InvoiceId)
-        //{
-        //    var query = db.getallorders.SingleOrDefault(m => m.InvoiceId == InvoiceId);
-        //    return View(query);
-        //}
-
-        //[HttpPost]
-        //public ActionResult ConfirmOrder(getallorder o)
-        //{
-        //    tblInvoice inv = new tblInvoice()
-        //    {
-        //        InvoiceId = o.InvoiceId,
-        //        UserId = o.UserId,
-        //        Bill = o.Bill,
-        //        Payment = o.Payment,
-        //        InvoiceDate = o.InvoiceDate,
-        //        Status = 1,
-        //    };
+            return View(result);
+        }
 
 
+        #endregion
 
-        //    db.Entry(inv).State = (System.Data.Entity.EntityState)EntityState.Modified;
-        //    db.SaveChanges();
+        #region  confirm order by admin
 
-        //    return View();
+        public ActionResult ConfirmOrder(int InvoiceId)
+        {
+            // Retrieve the invoice and user data for the given InvoiceId
+            var result = db.Invoices
+                .Where(inv => inv.InvoiceId == InvoiceId)
+                .Select(inv => new OrderUserVM
+                {
+                    InvoiceId = inv.InvoiceId,
+                    UserId = inv.UserId,
+                    Name = inv.User.Name, // Assuming User is a navigation property in Invoice
+                    Bill = inv.Bill,
+                    Payment = inv.Payment,
+                    InvoiceDate = inv.InvoiceDate,
+                    Status = inv.Status
+                })
+                .SingleOrDefault();
 
-        //}
+            if (result == null)
+            {
+                // Handle case where invoice with given InvoiceId was not found
+                return HttpNotFound(); // You can return HttpNotFoundResult or handle appropriately
+            }
 
-        //#endregion
+            return View(result);
+        }
 
-        //#region orders for only user
 
-        //public ActionResult OrderDetail(int id)
-        //{
-        //    var query = db.getallorderusers.Where(m => m.UserId == id).ToList();
-        //    return View(query);
-        //}
+        [HttpPost]
+        public ActionResult ConfirmOrder(OrderUserVM o)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var inv = db.Invoices.Find(o.InvoiceId);
 
-        //#endregion
+                    if (inv != null)
+                    {
+                        inv.Status = 1; 
+                        inv.Payment = o.Payment; 
+
+                        db.Entry(inv).State = EntityState.Modified;
+                        db.SaveChanges();
+
+                        return RedirectToAction("Index", "Home"); 
+                    }
+                    else
+                    {
+                        return HttpNotFound(); 
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "Error occurred while confirming the order. Please try again.");
+                }
+            }
+
+            return View(o);
+        }
+
+
+        #endregion
+
+        #region orders for only user
+
+        public ActionResult OrderDetail(int id)
+        {
+            var result = db.Invoices
+                .Join(db.Users,
+                      invoice => invoice.UserId,
+                      user => user.UserId,
+                      (invoice, user) => new OrderUserVM
+                      {
+                          InvoiceId = invoice.InvoiceId,
+                          UserId = user.UserId,
+                          Name = user.Name,
+                          Bill = invoice.Bill,
+                          Payment = invoice.Payment,
+                          InvoiceDate = invoice.InvoiceDate,
+                          Status = invoice.Status
+                      })
+                .Where(x => x.UserId == id)
+                .ToList();
+
+            return View(result);
+        }
+
+
+        #endregion
 
 
         #region  get all users 
-
+        [Authorize(Roles = "1")]
         public ActionResult GetAllUser()
         {
             var query = db.Users.ToList();
@@ -242,9 +309,24 @@ namespace FinalProject.Controllers
 
         public ActionResult Invoice(int id)
         {
-            var query = db.user_invoices.Where(m => m.InvoiceId == id).ToList();
-            return View(query);
+            var result = db.Invoices
+                .Join(db.Users,
+                      invoice => invoice.UserId,
+                      user => user.UserId,
+                      (invoice, user) => new UserInvoiceVM
+                      {
+                          InvoiceId = invoice.InvoiceId,
+                          Name = user.Name,
+                          Bill = invoice.Bill,
+                          Payment = invoice.Payment,
+                          InvoiceDate = invoice.InvoiceDate
+                      })
+                .Where(m => m.InvoiceId == id)
+                .ToList();
+
+            return View(result);
         }
+
 
         #endregion
 

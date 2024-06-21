@@ -1,0 +1,26 @@
+﻿@model FinalProject.Models.ViewModel.OrderUserVM
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.InvoiceId)
+    <br />
+    <br />
+    <label>User Name:</label>
+    @Html.DisplayFor(model => model.Name)
+    <br />
+    <br />
+    <label>Payment:</label>
+    @Html.DisplayFor(model => model.Payment)
+    <br />
+    <br />
+    <label>Bill:</label>
+    @Html.DisplayFor(model => model.Bill)
+    <br />
+    <br />
+    <label>Invoice Date:</label>
+    @Html.DisplayFor(model => model.InvoiceDate)
+    <br />
+    <br />
+
+    <input type="submit" value="Confirm Order" class="btn btn-success" />
+}

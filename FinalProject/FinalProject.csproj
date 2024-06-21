@@ -111,7 +111,16 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\css\all.min.css" />
+    <Content Include="Content\css\animate.css" />
+    <Content Include="Content\css\magnific-popup.css" />
+    <Content Include="Content\css\main.css" />
+    <Content Include="Content\css\meanmenu.min.css" />
+    <Content Include="Content\css\owl.carousel.css" />
+    <Content Include="Content\css\responsive.css" />
     <Content Include="Global.asax" />
+    <Content Include="img\favicon.png" />
+    <Content Include="img\logo.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -145,6 +154,16 @@
     <Content Include="Scripts\jquery-3.7.1.min.js" />
     <Content Include="Scripts\jquery-3.7.1.slim.js" />
     <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
+    <Content Include="Scripts\js\form-validate.js" />
+    <Content Include="Scripts\js\jquery-1.11.3.min.js" />
+    <Content Include="Scripts\js\jquery.countdown.js" />
+    <Content Include="Scripts\js\jquery.isotope-3.0.6.min.js" />
+    <Content Include="Scripts\js\jquery.magnific-popup.min.js" />
+    <Content Include="Scripts\js\jquery.meanmenu.min.js" />
+    <Content Include="Scripts\js\main.js" />
+    <Content Include="Scripts\js\owl.carousel.min.js" />
+    <Content Include="Scripts\js\sticker.js" />
+    <Content Include="Scripts\js\waypoints.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\AddtoCart.cshtml" />
@@ -178,6 +197,8 @@
     <Compile Include="Models\Provider\MyRoleProvider.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserInvoice.cs" />
+    <Compile Include="Models\ViewModel\OrderUserVM.cs" />
+    <Compile Include="Models\ViewModel\UserInvoiceVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +212,10 @@
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.1.min.map" />
+    <Content Include="Views\Home\ConfirmOrder.cshtml" />
+    <Content Include="Views\Home\GetAllOrderDetail.cshtml" />
+    <Content Include="Views\Home\OrderDetail.cshtml" />
+    <Content Include="Views\Home\Invoice.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
