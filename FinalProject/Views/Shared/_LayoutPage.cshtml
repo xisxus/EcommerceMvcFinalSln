@@ -8,127 +8,82 @@
 </head>
 <body>
 
-    <!--PreLoader-->
-    <div class="loader">
-        <div class="loader-inner">
-            <div class="circle"></div>
-        </div>
-    </div>
-    <!--PreLoader Ends-->
-    <!-- header -->
-    <div class="top-header-area" id="sticker">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-sm-12 text-center">
-                    <div class="main-menu-wrap">
-                        <!-- logo -->
-                        <div class="site-logo">
-                            <a href="index.html">
-                                <img src="~/img/logo.png" />
-                            </a>
-                        </div>
-                        <!-- logo -->
-                        <!-- menu start -->
-                        <nav class="main-menu">
-                            <ul>
+
+    <!-- menu start -->
+    <nav class="main-menu">
+        <ul>
 
 
 
-                                @if (!User.Identity.IsAuthenticated)
-                                {
+            @if (!User.Identity.IsAuthenticated)
+            {
 
-                                    <li class="nav-item active"><a href="@Url.Action("Index","Home")" class="nav-link">Home</a></li>
-                                    <li class="nav-item"><a href="@Url.Action("Login","Account")" class="nav-link">Login</a></li>
-                                    <li class="nav-item"><a href="@Url.Action("Register", "Account")" class="nav-link">Register</a></li>
-                                    if (TempData["cart"] != null)
-                                    {
-                                        TempData.Keep();
-                                        <li class="nav-item cta cta-colored"><a href="@Url.Action("Checkout","Home")" class="nav-link"><span class="icon-shopping_cart"></span>[@TempData["item_count"]]</a></li>
-                                    }
+                <li class="nav-item active"><a href="@Url.Action("Index","Home")" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="@Url.Action("Login","Account")" class="nav-link">Login</a></li>
+                <li class="nav-item"><a href="@Url.Action("Register", "Account")" class="nav-link">Register</a></li>
+                if (TempData["cart"] != null)
+                {
+                    TempData.Keep();
+                    <li class="nav-item cta cta-colored"><a href="@Url.Action("Checkout","Home")" class="nav-link"><span class="icon-shopping_cart"></span>[@TempData["item_count"]]</a></li>
+                }
 
-                                } @if (User.Identity.IsAuthenticated)
-                                {
+            } @if (User.Identity.IsAuthenticated)
+            {
 
-                                    if (User.IsInRole("1"))
-                                    {
-                                        <li class="nav-item active"><a href="@Url.Action("Index","Home")" class="nav-link">Home</a></li>
+                if (User.IsInRole("1"))
+                {
+                    <li class="nav-item active"><a href="@Url.Action("Index","Home")" class="nav-link">Home</a></li>
 
-                                        <li class="nav-item "><span class="nav-link">Welcome to @Session["User"]</span></li>
+                    <li class="nav-item "><span class="nav-link">Welcome to @Session["User"]</span></li>
 
 
-                                        <li>
-                                            <a href="@Url.Action("Index", "Products")">Categories</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="@Url.Action("Create", "Category")">Add Category</a></li>
-                                                <li><a href="@Url.Action("Index", "Category")">View Categories</a></li>
-                                            </ul>
-                                        </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Products")">Categories</a>
+                        <ul class="sub-menu">
+                            <li><a href="@Url.Action("Create", "Category")">Add Category</a></li>
+                            <li><a href="@Url.Action("Index", "Category")">View Categories</a></li>
+                        </ul>
+                    </li>
 
-                                        <li>
-                                            <a href="@Url.Action("Index", "Products")">Products</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="@Url.Action("Create", "Products")">Add Product</a></li>
-                                                <li><a href="@Url.Action("Index", "Products")">View Products</a></li>
-                                            </ul>
-                                        </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Products")">Products</a>
+                        <ul class="sub-menu">
+                            <li><a href="@Url.Action("Create", "Products")">Add Product</a></li>
+                            <li><a href="@Url.Action("Index", "Products")">View Products</a></li>
+                        </ul>
+                    </li>
 
 
 
 
-                                        <li class="nav-item"><a href="@Url.Action("GetAllUser", "Home")" class="nav-link">Users</a></li>
-                                        <li class="nav-item"><a href="@Url.Action("GetAllOrderDetail", "Home")" class="nav-link">Orders</a></li>
-                                        <li class="nav-item"><a href="@Url.Action("Signout","Account")" class="nav-link">Logout</a></li>
-                                    }
-                                    if (User.IsInRole("2"))
-                                    {
+                    <li class="nav-item"><a href="@Url.Action("GetAllUser", "Home")" class="nav-link">Users</a></li>
+                    <li class="nav-item"><a href="@Url.Action("GetAllOrderDetail", "Home")" class="nav-link">Orders</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Signout","Account")" class="nav-link">Logout</a></li>
+                }
+                if (User.IsInRole("2"))
+                {
 
-                                        <li class="nav-item "><span class="nav-link">Welcome to @Session["User"]</span></li>
-                                        <li class="nav-item"><a href="@Url.Action("OrderDetail", "Home", new { id = @Session["uid"] })" class="nav-link">Orders</a></li>
-                                        if (TempData["cart"] != null)
-                                        {
-                                            TempData.Keep();
-                                            <li class="nav-item cta cta-colored"><a href="@Url.Action("Checkout","Home")" class="nav-link"><span class="icon-shopping_cart"></span>[@TempData["item_count"]]</a></li>
+                    <li class="nav-item "><span class="nav-link">Welcome to @Session["User"]</span></li>
+                    <li class="nav-item"><a href="@Url.Action("OrderDetail", "Home", new { id = @Session["uid"] })" class="nav-link">Orders</a></li>
+                    if (TempData["cart"] != null)
+                    {
+                        TempData.Keep();
+                        <li class="nav-item cta cta-colored"><a href="@Url.Action("Checkout","Home")" class="nav-link"><span class="icon-shopping_cart"></span>[@TempData["item_count"]]</a></li>
 
-                                        }
+                    }
 
-                                        <li class="nav-item"><a href="@Url.Action("Signout","Account")" class="nav-link">Logout</a></li>
-                                    }
-                                }
+                    <li class="nav-item"><a href="@Url.Action("Signout","Account")" class="nav-link">Logout</a></li>
+                }
+            }
 
-                            </ul>
+        </ul>
 
 
 
-                                
-                        </nav>
-                        <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-                        <div class="mobile-menu"></div>
-                        <!-- menu end -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end header -->
-    <!-- search area -->
-    <div class="search-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <span class="close-btn"><i class="fas fa-window-close"></i></span>
-                    <div class="search-bar">
-                        <div class="search-bar-tablecell">
-                            <h3>Search For:</h3>
-                            <input type="text" placeholder="Keywords">
-                            <button type="submit">Search <i class="fas fa-search"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end search area -->
-    
+
+    </nav>
+
+
 
 
 
@@ -141,6 +96,6 @@
 
     @RenderBody()
 
-  
+
 </body>
 </html>
