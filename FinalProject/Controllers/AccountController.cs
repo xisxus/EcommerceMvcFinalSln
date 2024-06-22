@@ -12,7 +12,7 @@ namespace FinalProject.Controllers
     {
         AppDbContext db = new AppDbContext();
 
-        #region user registration 
+     
 
         public ActionResult Register()
         {
@@ -41,9 +41,9 @@ namespace FinalProject.Controllers
             return View();
         }
 
-        #endregion
+       
 
-        #region user login
+        
 
         public ActionResult Login()
         {
@@ -80,9 +80,7 @@ namespace FinalProject.Controllers
             return View();
         }
 
-        #endregion
-
-        #region logout 
+     
 
         public ActionResult Signout()
         {
@@ -90,6 +88,6 @@ namespace FinalProject.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        #endregion
+     
     }
 }
