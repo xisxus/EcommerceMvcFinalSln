@@ -12,7 +12,7 @@ namespace FinalProject.Controllers
     {
         AppDbContext db = new AppDbContext();
 
-        #region showing categories for admin
+     
 
         public ActionResult Index()
         {
@@ -21,10 +21,7 @@ namespace FinalProject.Controllers
             return View(query);
         }
 
-        #endregion
-
-
-        #region add categories
+      
 
         public ActionResult Create()
         {
@@ -49,10 +46,7 @@ namespace FinalProject.Controllers
             return View();
         }
 
-        #endregion
-
-
-        #region edit category
+      
 
         public ActionResult Edit(int id)
         {
@@ -78,9 +72,7 @@ namespace FinalProject.Controllers
             return RedirectToAction("Index");
         }
 
-        #endregion
-
-        #region delete category
+      
 
         public ActionResult Delete(int id)
         {
@@ -92,6 +84,6 @@ namespace FinalProject.Controllers
 
 
 
-        #endregion
+      
     }
 }
