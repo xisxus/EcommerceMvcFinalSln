@@ -17,7 +17,7 @@ namespace FinalProject.Controllers
         /* Add to Cart List use */
         List<Cart> li = new List<Cart>();
 
-        #region home page in showing all products 
+       
 
         public ActionResult Index()
         {
@@ -41,9 +41,7 @@ namespace FinalProject.Controllers
             return View(query);
         }
 
-        #endregion
-
-        #region add to cart
+      
 
         public ActionResult AddtoCart(int id)
         {
@@ -94,9 +92,7 @@ namespace FinalProject.Controllers
             return RedirectToAction("Index");
         }
 
-        #endregion
-
-        #region remove cart item
+      
 
         public ActionResult remove(int? id)
         {
@@ -121,10 +117,7 @@ namespace FinalProject.Controllers
 
             return RedirectToAction("Index");
         }
-        #endregion
-
-        #region checkout code
-
+     
         public ActionResult Checkout()
         {
             TempData.Keep();
@@ -171,10 +164,7 @@ namespace FinalProject.Controllers
             return View();
         }
 
-        #endregion
-
-
-        #region all orders for admin 
+     
 
         public ActionResult GetAllOrderDetail()
         {
@@ -198,9 +188,7 @@ namespace FinalProject.Controllers
         }
 
 
-        #endregion
-
-        #region  confirm order by admin
+      
 
         public ActionResult ConfirmOrder(int InvoiceId)
         {
@@ -263,9 +251,6 @@ namespace FinalProject.Controllers
         }
 
 
-        #endregion
-
-        #region orders for only user
 
         public ActionResult OrderDetail(int id)
         {
@@ -290,10 +275,7 @@ namespace FinalProject.Controllers
         }
 
 
-        #endregion
-
-
-        #region  get all users 
+      
         [Authorize(Roles = "1")]
         public ActionResult GetAllUser()
         {
@@ -328,7 +310,7 @@ namespace FinalProject.Controllers
         }
 
 
-        #endregion
+     
 
     }
 }
