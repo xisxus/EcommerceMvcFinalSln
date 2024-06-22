@@ -13,7 +13,7 @@ namespace FinalProject.Controllers
     {
         AppDbContext db = new AppDbContext();
 
-        #region showing all products for admin 
+      
 
         public ActionResult Index()
         {
@@ -21,10 +21,7 @@ namespace FinalProject.Controllers
             return View(query);
         }
 
-        #endregion
-
-
-        #region products add for admin
+     
 
         public ActionResult Create()
         {
@@ -70,10 +67,7 @@ namespace FinalProject.Controllers
         }
 
 
-        #endregion
-
-
-        #region edit products
+      
 
         public ActionResult Edit(int id)
         {
@@ -112,10 +106,7 @@ namespace FinalProject.Controllers
 
         }
 
-        #endregion
-
-
-        #region delete product 
+       
 
         public ActionResult Delete(int id)
         {
@@ -129,6 +120,6 @@ namespace FinalProject.Controllers
 
         }
 
-        #endregion
+       
     }
 }
